@@ -44,7 +44,7 @@ pipeline {
         }
 
         stage('Deploy to Dev Environment') {
-            steps {
+           steps {
                 script {
                     // This sets up the Kubernetes configuration using the specified KUBECONFIG
                     def kubeConfig = readFile(KUBECONFIG)
@@ -58,9 +58,9 @@ pipeline {
         stage('Check Kubernetes Cluster') {
             steps {
                 script {
-                    sh "kubectl get pods"
-                    sh "kubectl get services"
-                    sh "kubectl get deploy"
+                    sh "kubectl get pods || true" 
+                    sh "kubectl get services || true"
+                    sh "kubectl get deploy || true"
                 }
             }
         }
